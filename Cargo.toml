@@ -1,16 +1,20 @@
 [package]
-name = "ina3221"
-version = "0.4.5"
-authors = ["Erik Rogers <erik@underlogic.tech>"]
-edition = "2021"
-repository = "https://github.com/UnderLogic/ina3221"
+name = "ina3221_async"
+version = "0.1.0"
+authors = [
+  "Erik Rogers <erik@underlogic.tech>",
+  "Dmytro Krasnianskyi <k.dimonych@gmail.com>",
+]
+edition = "2024"
+repository = "https://github.com/kdimonych/ina3221_async"
 license = "MIT"
-description = "Embedded driver for INA3221 triple-channel power monitor"
+description = "Async embedded driver for INA3221 triple-channel power monitor using embedded-hal-async"
 readme = "README.md"
 keywords = ["i2c", "driver", "embedded-hal-driver", "ina3221", "power"]
 categories = ["embedded", "hardware-support", "no-std"]
 
 [dependencies]
-bitflags = "1.3.2"
-embedded-hal = "1.0.0-alpha.9"
+bitflags = "2.9.4"
+embedded-hal-async = "1.0.0"
+# Use old 32-bit version of ohms for compatibility with 32-bit targets
 ohms = "0.2.0"
