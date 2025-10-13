@@ -149,21 +149,29 @@ const BUS_VOLTAGE_SCALE_FACTOR: i32 = 8000;
 ///
 /// [INA3221]: https://www.ti.com/lit/ds/symlink/ina3221.pdf
 ///
-pub struct INA3221Async<I2C> {
+#[maybe_async_cfg::maybe(
+    sync(feature = "sync", keep_self,),
+    async(feature = "async", idents(INA3221(async = "INA3221Async"),))
+)]
+pub struct INA3221<I2C> {
     i2c: RefCell<I2C>,
     /// I2C address of the INA3221
     pub address: u8,
 }
 
-impl<I2C, E> INA3221Async<I2C>
+#[maybe_async_cfg::maybe(
+    sync(feature = "sync", keep_self,),
+    async(feature = "async", idents(INA3221(async = "INA3221Async"),))
+)]
+impl<I2C, E> INA3221<I2C>
 where
     I2C: I2c<Error = E>,
 {
     /// Create a new INA3221 driver instance from an I2C peripheral on a specific address
     ///
     /// This is typically 0x40, 0x41, or 0x42 depending on the A0 pin setting
-    pub fn new(i2c: I2C, address: u8) -> INA3221Async<I2C> {
-        INA3221Async {
+    pub fn new(i2c: I2C, address: u8) -> INA3221<I2C> {
+        INA3221 {
             i2c: RefCell::new(i2c),
             address,
         }

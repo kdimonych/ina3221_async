@@ -30,6 +30,8 @@ You can find the documentation [here](https://docs.rs/ina3221/latest/ina3221/str
 
 This example assumes a **0.1 Ohm** shunt resistor for current and power calculations.
 
+<!-- TODO: prepare async version of the example -->
+
 ```rust
 const INA3221_I2C_ADDR: u8 = 0x40;
 const SHUNT_RESISTANCE: f32 = 0.1f32;   // 0.1 Ohm
